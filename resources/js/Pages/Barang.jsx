@@ -64,7 +64,7 @@ const Homepage = ({Barang, HeadTable}) => {
                         <td className="border py-2 whitespace-nowrap">{barang.name}</td>
                         <td className="border py-2 whitespace-nowrap">{barang.qty}</td>
                         <td className="border py-2 whitespace-nowrap">{barang.discount / 1 + "%"}</td>
-                        <td className="border py-2 whitespace-nowrap">{"Rp. " + barang.harga}</td>
+                        <td className="border py-2 whitespace-nowrap">{"Rp. " + barang.harga - barang.harga * barang.discount / 100}</td>
                         <td className="border py-2 whitespace-nowrap">
                             <Button onClick={handleDelete.bind(this, barang.id)} type="button" className="px-2 py-1.5 hover:bg-red-600 bg-red-500 rounded-xl text-white">Delete</Button>
                         </td>
@@ -76,7 +76,7 @@ const Homepage = ({Barang, HeadTable}) => {
                             <td className="border py-2 whitespace-nowrap">{barang.name}</td>
                             <td className="border py-2 whitespace-nowrap">{barang.qty}</td>
                             <td className="border py-2 whitespace-nowrap">{barang.discount / 1 + "%"}</td>
-                            <td className="border py-2 whitespace-nowrap">{"Rp. " + barang.harga}</td>
+                            <td className="border py-2 whitespace-nowrap">Rp. {barang.harga - barang.harga * barang.discount / 100}</td>
                             <td className="border py-2 whitespace-nowrap">
                                 <Button onClick={handleDelete.bind(this, barang.id)} type="button" className="px-2 py-1.5 hover:bg-red-600 bg-red-500 rounded-xl text-white">Delete</Button>
                             </td>

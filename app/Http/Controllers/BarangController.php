@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBarangRequest;
 use App\Http\Resources\BarangResource;
 use App\Models\Barang;
+use App\Models\Sales;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller{
@@ -27,6 +28,7 @@ class BarangController extends Controller{
         return redirect()->route("barang.index")->with("message", "Created Success");
     }
     public function destroy($id){
+        Sales::where("barang_id", $id)->delete();
         Barang::find($id)->delete();
         return redirect()->route("barang.index")->with("message", "Delete success");
     }

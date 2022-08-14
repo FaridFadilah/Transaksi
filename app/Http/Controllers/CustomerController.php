@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\URL;
 use App\Http\Resources\CustomerResource;
 use App\Http\Middleware\HandleInertiaRequests;
 use App\Http\Requests\StoreCustomerRequest;
+use App\Models\Sales;
 
 class CustomerController extends Controller{
     /**
@@ -90,6 +91,7 @@ class CustomerController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function destroy($id){
+        Sales::where("customer_id", $id)->delete();
         Customer::find($id)->delete();
         return redirect()->route("customer.index")->with("message", "Delete Success");
     }

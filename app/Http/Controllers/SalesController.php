@@ -21,7 +21,7 @@ class SalesController extends Controller{
     public function index(){
         $sales = Sales::all()->load(["customer","barang"]);
         return inertia("Homepage", [
-            "HeadTable" => ["no", "code transaksi", "Tanggal", "Nama Customer", "Jumlah Barang", "Sub total", "diskon", "ongkir", "total", "aksi"],
+            "HeadTable" => ["no", "code transaksi", "Tanggal", "Nama Customer","Barang", "Jumlah Barang", "Sub total", "diskon", "ongkir", "total", "aksi"],
             "customers" => CustomerResource::collection(Customer::all()),
             "sales" => $sales
             ]);

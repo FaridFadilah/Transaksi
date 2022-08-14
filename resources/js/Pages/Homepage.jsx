@@ -61,6 +61,7 @@ const Homepage = ({ sales, HeadTable,customers}) => {
                             <td className="border py-2 whitespace-nowrap">{sales.code}</td>
                             <td className="border py-2 whitespace-nowrap">{sales.tgl}</td>
                             <td className="border py-2 whitespace-nowrap">{sales.customer.name}</td>
+                            <td className="border py-2 whitespace-nowrap">{sales.barang.name}</td>
                             <td className="border py-2 whitespace-nowrap">{sales.jumlah_pesanan * 1}</td>
                             <td className="border py-2 whitespace-nowrap">{"Rp. " + sales.subtotal * 1}</td>
                             <td className="border py-2 whitespace-nowrap">{sales.barang.discount * 1 + "%"}</td>
@@ -77,6 +78,7 @@ const Homepage = ({ sales, HeadTable,customers}) => {
                                 <td className="border py-2 whitespace-nowrap">{sales.code}</td>
                                 <td className="border py-2 whitespace-nowrap">{sales.tgl}</td>
                                 <td className="border py-2 whitespace-nowrap">{sales.customer.name}</td>
+                                <td className="border py-2 whitespace-nowrap">{sales.barang.name}</td>
                                 <td className="border py-2 whitespace-nowrap">{sales.jumlah_pesanan * 1}</td>
                                 <td className="border py-2 whitespace-nowrap">{"Rp. " + sales.subtotal * 1}</td>
                                 <td className="border py-2 whitespace-nowrap">{sales.barang.discount * 1 + "%"}</td>
