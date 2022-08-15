@@ -12,7 +12,7 @@ const Homepage = ({ sales, HeadTable,customers}) => {
     const { flash } = usePage().props
     const [tableFilter,setTableFilter] = useState([])
     const [value, setValue] = useState("")
-    const [dataSource, setDataSource] = useState(sales) 
+    const [dataSource, setDataSource] = useState(sales)
     const filterData = (e) => {
         if(e.target.value != ""){
             setValue(e.target.value)
@@ -35,14 +35,14 @@ const Homepage = ({ sales, HeadTable,customers}) => {
     return (
         <div className="">
             <div className="p-3 flex justify-between items-center">
-                <h1 className="font-light dark:text-white text-xl text-gray-800 uppercase ">Barang</h1>
+                <h1 className="font-light dark:text-white text-xl text-gray-800 uppercase ">Sales</h1>
                 <div className="items-center flex ">
                     <DarkMode/>
                     <input type="text" placeholder='Cari' onChange={filterData} value={value} className="px-4 py-2 w-full border-gray-300 shadow-sm focus:ring focus:ring-sky-400 transition duration-200 rounded-xl dark:bg-gray-700 dark:placeholder:text-white"/>
                 </div>
             </div>
             <div className="p-3">
-                {flash.message && (<div class="px-4 py-1.5 text-xl text-white rounded-r-lg border-l-blue-500 border-l-4 bg-sky-300 w-1/2 lg:w-1/8">{flash.message}</div>)}
+                {flash.message && (<div class="px-2 py-1.5 text-xl text-white rounded-r-lg border-l-blue-500 border-l-4 bg-sky-300 w-1/3 lg:w-1/5">{flash.message}</div>)}
                 <div className="p-3 justify-start text-center">
                         <Breadchumb href={route("sales.index")} active>Transaksi</Breadchumb>
                         <Breadchumb href={route("customer.index")}>Customer</Breadchumb>
@@ -63,16 +63,16 @@ const Homepage = ({ sales, HeadTable,customers}) => {
                             <td className="border py-2 whitespace-nowrap">{sales.customer.name}</td>
                             <td className="border py-2 whitespace-nowrap">{sales.barang.name}</td>
                             <td className="border py-2 whitespace-nowrap">{sales.jumlah_pesanan * 1}</td>
-                            <td className="border py-2 whitespace-nowrap">{"Rp. " + sales.subtotal * 1}</td>
+                            <td className="border py-2 whitespace-nowrap">Rp. {sales.subtotal * 1}</td>
                             <td className="border py-2 whitespace-nowrap">{sales.barang.discount * 1 + "%"}</td>
                             <td className="border py-2 whitespace-nowrap">{sales.ongkir * 1}</td>
-                            <td className="border py-2 whitespace-nowrap">{sales.total_bayar * 1}</td>
+                            <td className="border py-2 whitespace-nowrap">Rp. {sales.total_bayar * 1}</td>
                             <td className="border py-2 whitespace-nowrap">
                                 <Button type="button" onClick={handleDelete.bind(this, sales.id)} className="px-2 py-1.5 hover:bg-red-600 bg-red-500 rounded-xl text-white">Delete</Button>
                             </td>
                         </tr>
                         )) :
-                        dataSource.map((sales, index)=> (
+                        sales.map((sales, index)=> (
                             <tr key={index} className="border dark:bg-gray-300">
                                 <td className="border py-2 whitespace-nowrap">{i++}</td>
                                 <td className="border py-2 whitespace-nowrap">{sales.code}</td>
@@ -80,11 +80,12 @@ const Homepage = ({ sales, HeadTable,customers}) => {
                                 <td className="border py-2 whitespace-nowrap">{sales.customer.name}</td>
                                 <td className="border py-2 whitespace-nowrap">{sales.barang.name}</td>
                                 <td className="border py-2 whitespace-nowrap">{sales.jumlah_pesanan * 1}</td>
-                                <td className="border py-2 whitespace-nowrap">{"Rp. " + sales.subtotal * 1}</td>
+                                <td className="border py-2 whitespace-nowrap">Rp. {sales.subtotal * 1}</td>
                                 <td className="border py-2 whitespace-nowrap">{sales.barang.discount * 1 + "%"}</td>
                                 <td className="border py-2 whitespace-nowrap">{sales.ongkir * 1}</td>
-                                <td className="border py-2 whitespace-nowrap">{sales.total_bayar * 1}</td>
+                                <td className="border py-2 whitespace-nowrap">Rp. {sales.total_bayar * 1}</td>
                                 <td className="border py-2 whitespace-nowrap">
+                                    <Link href={route("sales.edit", sales.id)} className="mr-2 px-2 py-1.5 hover:bg-green-600 bg-green-500 rounded-xl text-white">Edit</Link>
                                     <Button type="button" onClick={handleDelete.bind(this, sales.id)} className="px-2 py-1.5 hover:bg-red-600 bg-red-500 rounded-xl text-white">Delete</Button>
                                 </td>
                             </tr>

@@ -35,14 +35,14 @@ const Homepage = ({customers, HeadTable}) => {
     return (
         <div className="">
             <div className="p-3 flex justify-between items-center">
-                <h1 className="font-light dark:text-white text-xl text-gray-800 uppercase ">Barang</h1>
+                <h1 className="font-light dark:text-white text-xl text-gray-800 uppercase ">Customer</h1>
                 <div className="items-center flex ">
                     <DarkMode/>
-                    <input type="text"  placeholder='Cari' onChange={filterData} value={value} className="px-4 py-2 w-full border-gray-300 shadow-sm focus:ring focus:ring-sky-400 transition duration-200 rounded-xl dark:bg-gray-700 dark:placeholder:text-white"/>
+                    <input type="text"  placeholder='Cari' onChange={filterData} value={value} className="px-2.5 py-1.5 w-full border-gray-300 shadow-sm focus:ring focus:ring-sky-400 transition duration-200 rounded-xl dark:bg-gray-700 dark:placeholder:text-white"/>
                 </div>
             </div>
             <div className="p-3">
-                {flash.message && (<div class="px-4 py-2.5 text-xl text-white rounded-r-lg border-l-blue-500 border-l-4 bg-sky-300 w-1/2 lg:w-1/5">{flash.message}</div>)}
+                {flash.message && (<div className="px-4 py-2.5 text-xl text-white rounded-r-lg border-l-blue-500 border-l-4 bg-sky-300 w-1/3 lg:w-1/5">{flash.message}</div>)}
                 <div className="p-3 justify-start text-center">
                         <Breadchumb href={route("sales.index")}>Transaksi</Breadchumb>
                         <Breadchumb href={route("customer.index")} active>Customer</Breadchumb>
@@ -74,6 +74,7 @@ const Homepage = ({customers, HeadTable}) => {
                                 <td className="border py-2 whitespace-nowrap">{customer.name}</td>
                                 <td className="border py-2 whitespace-nowrap">{customer.telp}</td>
                                 <td className="border py-2 whitespace-nowrap">
+                                    <Link href={route("customer.edit",customer.id)} className=" mr-2 px-2 py-1.5 hover:bg-green-600 bg-green-500 rounded-xl text-white">Edit</Link>
                                     <Button type="button" onClick={ handleDelete.bind(this,customer.id) } className="px-2 py-1.5 hover:bg-red-600 bg-red-500 rounded-xl text-white">Delete</Button>
                                 </td>
                             </tr>

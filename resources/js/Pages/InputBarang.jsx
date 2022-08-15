@@ -8,12 +8,19 @@ import { Link, usePage } from "@inertiajs/inertia-react"
 
 const InputBarang = ({codeBarang, create_url}) => {
     const {errors} = usePage().props
+    // const [values, setValues] = React.useState({
+    //     code : codeBarang,
+    //     name : barang?.name || "",
+    //     qty :  barang?.qty || "",
+    //     discount :  barang?.discount || "",
+    //     harga :  barang?.harga || "",
+    // })
     const [values, setValues] = React.useState({
         code : codeBarang,
         name : "",
-        qty : "",
-        discount : "",
-        harga : "",
+        qty :  "",
+        discount :  "",
+        harga :  "",
     })
 
     const handleChange = (e) => {
@@ -57,5 +64,6 @@ const InputBarang = ({codeBarang, create_url}) => {
         </div>
     )
 }
+// InputBarang.layout = page => <Form children={page} formClassName="lg:w-1/3 w-3/4" header={barang ? "Update Barang" : "Input Barang"}/>
 InputBarang.layout = page => <Form children={page} formClassName="lg:w-1/3 w-3/4" header="Input Barang"/>
 export default InputBarang

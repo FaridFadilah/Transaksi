@@ -61,7 +61,12 @@ class CustomerController extends Controller{
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer){}
+    public function show(Customer $customer){
+        $customer = Customer::find($customer)->get();
+        return inertia("UpdateBarang", [
+            "customer" => $customer
+        ]);
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -70,7 +75,10 @@ class CustomerController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function edit(Customer $customer){
-        //
+        $data = new CustomerResource($customer);
+        return inertia("UpdateCustomer", [
+            "customer" => $data
+        ]);
     }
 
     /**
@@ -80,8 +88,9 @@ class CustomerController extends Controller{
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer){
-
+    public function update(StoreCustomerRequest $request, Customer $customer){
+        $customer->update($request->validated());
+        return redirect()->route("customer.index")->with("message", "Update Success");
     }
 
     /**

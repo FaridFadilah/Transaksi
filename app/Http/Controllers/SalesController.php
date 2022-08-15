@@ -99,7 +99,11 @@ class SalesController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function edit($id){
-        //
+        return inertia("UpdateSales", [
+            "sales" => Sales::find($id),
+            "barang" => BarangResource::collection(Barang::all()),
+            "customer" => CustomerResource::collection(Customer::all()),
+        ]);
     }
 
     /**
@@ -109,8 +113,9 @@ class SalesController extends Controller{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
-        //
+    public function update(StoreSalesRequest $request, Sales $sales){
+        $sales->update($request->validated());
+        return redirect()->route("sales.index")->with("message", "Update Success");
     }
 
     /**

@@ -9,6 +9,7 @@ import DarkMode from "@/Components/Darkmode"
 
 const Homepage = ({Barang, HeadTable}) => {
     var i = 1
+    // console.log(Barang[0].name)
     const { flash } = usePage().props
     const [value, setValue] = useState("")
     const [tableFilter, setTableFilter] = useState("")
@@ -42,7 +43,7 @@ const Homepage = ({Barang, HeadTable}) => {
                 </div>
             </div>
             <div className="p-3">
-                {flash.message && (<div class="px-4 py-2.5 text-xl text-white rounded-r-lg border-l-blue-500 border-l-4 bg-sky-300 w-1/2 lg:w-1/5">{flash.message}</div>)}
+                {flash.message && (<div class="px-4 py-2.5 text-xl text-white rounded-r-lg border-l-blue-500 border-l-4 bg-sky-300 w-1/3 lg:w-1/5">{flash.message}</div>)}
             <div className="p-3 justify-start text-center">
                 <Breadchumb href={route("sales.index")}>Transaksi</Breadchumb>
                 <Breadchumb href={route("customer.index")}>Customer</Breadchumb>
@@ -64,7 +65,7 @@ const Homepage = ({Barang, HeadTable}) => {
                         <td className="border py-2 whitespace-nowrap">{barang.name}</td>
                         <td className="border py-2 whitespace-nowrap">{barang.qty}</td>
                         <td className="border py-2 whitespace-nowrap">{barang.discount / 1 + "%"}</td>
-                        <td className="border py-2 whitespace-nowrap">{"Rp. " + barang.harga - barang.harga * barang.discount / 100}</td>
+                        <td className="border py-2 whitespace-nowrap">Rp. {barang.harga - barang.harga * barang.discount / 100}</td>
                         <td className="border py-2 whitespace-nowrap">
                             <Button onClick={handleDelete.bind(this, barang.id)} type="button" className="px-2 py-1.5 hover:bg-red-600 bg-red-500 rounded-xl text-white">Delete</Button>
                         </td>
@@ -78,6 +79,7 @@ const Homepage = ({Barang, HeadTable}) => {
                             <td className="border py-2 whitespace-nowrap">{barang.discount / 1 + "%"}</td>
                             <td className="border py-2 whitespace-nowrap">Rp. {barang.harga - barang.harga * barang.discount / 100}</td>
                             <td className="border py-2 whitespace-nowrap">
+                                <Link href={route("barang.edit", barang.id)} className="mr-2 px-2 py-1.5 hover:bg-green-600 bg-green-500 rounded-xl text-white">Edit</Link>
                                 <Button onClick={handleDelete.bind(this, barang.id)} type="button" className="px-2 py-1.5 hover:bg-red-600 bg-red-500 rounded-xl text-white">Delete</Button>
                             </td>
                         </tr>
@@ -85,7 +87,9 @@ const Homepage = ({Barang, HeadTable}) => {
                 </tbody>
             </Table>
             </div>
-            <div className="p-3 justify-center flex items-center"><Link href={route("barang.create")} className="text-blue-700 text-lg hover:underline">Tambah Barang</Link></div>
+            <div className="p-3 justify-center flex items-center">
+                <Link href={route("barang.create")} className="text-blue-700 text-lg hover:underline">Tambah Barang</Link>
+            </div>
         </div>
     )
 }

@@ -22,21 +22,11 @@ Route::controller(SalesController::class)->name("sales.")->group(function(){
     Route::get("/", "index")->name("index");
     Route::get("/sales/create", "create")->name("create");
     Route::post("/sales/create", "store")->name("store");
+    Route::get("/sales/{sales}/edit", "edit")->name("edit");
+    Route::put("/sales/{sales}/edit", "update")->name("update");
     Route::delete("/sales/destroy/{id}", "destroy")->name("destroy");
 });
-
-Route::controller(CustomerController::class)->name("customer.")->group(function(){
-    Route::get("/customer", "index")->name("index");
-    Route::get("/customer/create", "create")->name("create");
-    Route::post("/customer/create", "store")->name("store");
-    Route::delete("/customer/destroy/{id}", "destroy")->name("destroy");
-});
-
-Route::controller(BarangController::class)->name("barang.")->group(function(){
-    Route::get("/barang", "index")->name("index");
-    Route::get("/barang/create", "create")->name("create");
-    Route::post("/barang/create", "store")->name("store");
-    Route::delete("/barang/destroy/{id}", "destroy")->name("destroy");
-});
+Route::resource("/customer", CustomerController::class);
+Route::resource("/barang", BarangController::class);
 
 require __DIR__.'/auth.php';

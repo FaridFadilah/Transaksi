@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreBarangRequest;
-use App\Http\Resources\BarangResource;
-use App\Models\Barang;
 use App\Models\Sales;
+use App\Models\Barang;
+use App\Http\Requests\StoreBarangRequest;
+use App\Http\Requests\UpdateBarangRequest;
+use App\Http\Resources\BarangResource;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller{
@@ -27,8 +28,20 @@ class BarangController extends Controller{
         Barang::create($request->validated());
         return redirect()->route("barang.index")->with("message", "Created Success");
     }
+
+    public function edit($id){
+        return inertia("UpdateBarang", [
+            "barang" => Barang::find($id)
+        ]);
+    }
+    public function update(StoreBarangRequest $request, Barang $barang){
+        $barang->update($request->validated());
+        // dd([$request, $barang]);
+        return redirect()->route("barang.index")->with("message", "Update Success");
+    }
+
     public function destroy($id){
-        Sales::where("barang_id", $id)->delete();
+        Sales::where("barang_id", $id   )->delete();
         Barang::find($id)->delete();
         return redirect()->route("barang.index")->with("message", "Delete success");
     }
